@@ -24,6 +24,10 @@ function AddButton() {
   return <button onClick={handleClick}>Clicked {count} times</button>;
 }
 
+function AddButton2({ count, onclick }) {
+  return <button onClick={onclick}>Clicked {count} times</button>;
+}
+
 export default function MyApp() {
   const user = {
     name: "Hedy Lamarr",
@@ -46,6 +50,12 @@ export default function MyApp() {
     </li>
   ));
 
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
   return (
     <div>
       <h1>Welcome to my app</h1>
@@ -64,6 +74,10 @@ export default function MyApp() {
       <AlertButton />
       <AddButton />
       <AddButton />
+
+      <h1>Counters that update together</h1>
+      <AddButton2 count={count} onclick={handleClick} />
+      <AddButton2 count={count} onclick={handleClick} />
     </div>
   );
 }
